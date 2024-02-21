@@ -13,7 +13,7 @@ enum EStyleTransferTabs {
 
 const App = () => {
 
-    const [value, setValue] = useState(EStyleTransferTabs.ARTBANK)
+    const [value, setValue] = useState(EStyleTransferTabs.NNST)
 
     const handleChange = useCallback((event: React.SyntheticEvent, newValue: EStyleTransferTabs) => {
         setValue(newValue)
@@ -23,7 +23,7 @@ const App = () => {
 
         <div className="row mb-2">
             <div className="d-flex justify-content-center">
-                <Typography variant="h3">STYLE TRANSFER DEMO</Typography>
+                <Typography variant="h3" style={{fontWeight: 'bold'}}>NEURAL STYLE TRANSFER</Typography>
             </div>
         </div>
 

@@ -12,7 +12,7 @@ const NNSTPredictionComponent = () => {
     // Local state
     const [contentNN, setContentNN] = useState<any>(undefined)
     const [styleNN, setStyleNN] = useState<any>(undefined)
-    const [alpha, setAlpha] = useState<any>(0)
+    const [alpha, setAlpha] = useState<any>(0.75)
     const [isColorizeSelected, setColorize] = useState(false)
     const [predictionSrc, setPredictionSrc] = useState<string | null>(null)
     const [isFetchInPending, setIsFetchInPending] = useState(false)
@@ -20,7 +20,7 @@ const NNSTPredictionComponent = () => {
     // clear state if contentNN and styleNN are cleared
     useEffect(() => {
         if (!contentNN && !styleNN) {
-            setAlpha(0)
+            setAlpha(0.75)
             setColorize(false)
             setPredictionSrc(null)
         }
@@ -30,7 +30,7 @@ const NNSTPredictionComponent = () => {
     useEffect(() => () => {
         setContentNN(undefined)
         setStyleNN(undefined)
-        setAlpha(0)
+        setAlpha(0.75)
         setColorize(false)
         setPredictionSrc(null)
     }, [])
@@ -77,48 +77,33 @@ const NNSTPredictionComponent = () => {
             <div className="row">
 
                 {/*Content image*/}
-                <div className="col-6">
+                <div className="col-6 d-flex flex-column align-items-center">
+                    <Typography variant="subtitle1"
+                                style={{fontWeight: 'bold'}}>Content image</Typography>
 
-                    <div className="row">
-                        <div className="col-12 d-flex flex-column align-items-center">
-                            <Typography variant="subtitle1"
-                                        style={{fontWeight: 'bold'}}>Content image</Typography>
-                        </div>
-                        <div className="col-12 my-2 px-4">
-                            <Typography variant="caption">Insert the content image</Typography>
-                        </div>
-                        <div className="col-12">
-                            <DropZoneCard
-                                uploadedFile={contentNN}
-                                setUploadedFile={setContentNN}
-                            />
-                        </div>
-                    </div>
+                    <DropZoneCard
+                        uploadedFile={contentNN}
+                        setUploadedFile={setContentNN}
+                    />
                 </div>
 
                 {/*Style image*/}
                 <div className="col-6 d-flex flex-column align-items-center">
-                    <div className="row">
-                        <div className="col-12 d-flex flex-column align-items-center">
-                            <Typography variant="subtitle1"
-                                        style={{fontWeight: 'bold'}}>Style image</Typography>
-                        </div>
-                        <div className="col-12 my-2 px-4">
-                            <Typography variant="caption">Insert the style image</Typography>
-                        </div>
-                        <div className="col-12">
-                            <DropZoneCard
-                                uploadedFile={styleNN}
-                                setUploadedFile={setStyleNN}
-                            />
-                        </div>
-                    </div>
+                    <Typography variant="subtitle1"
+                                style={{fontWeight: 'bold'}}>Style image</Typography>
+
+                    <DropZoneCard
+                        uploadedFile={styleNN}
+                        setUploadedFile={setStyleNN}
+                    />
                 </div>
 
                 <div className="col-4 mt-3">
                     <Typography variant="subtitle2">
                         Alpha
-                        <Tooltip title="Alpha param" placement="top">
+                        <Tooltip
+                            title="alpha=1.0 corresponds to maximum content preservation, alpha=0.0 is maximum stylization"
+                            placement="top">
                             <IconButton>
                                 <InfoOutlinedIcon fontSize="small"/>
                             </IconButton>
@@ -141,7 +126,7 @@ const NNSTPredictionComponent = () => {
                 <div className="col-6 d-flex align-items-center">
                     <FormControlLabel
                         label={
-                            <Tooltip title="Colorize" placement="top">
+                            <Tooltip title="Use style colors for the stylized image" placement="top">
                                 <span>
                                     Colorize
                                     <IconButton>

@@ -41,7 +41,7 @@ const PreviewImage = (props: IPreviewImageProps) => {
             backgroundSize: 'contain',
             margin: '6px'
         }}
-        title="green iguana"
+        title="preview"
     >
         <aside style={thumbsContainer}>
             <div style={thumb} key="predict_artbank">

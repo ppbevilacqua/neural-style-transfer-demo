@@ -17,10 +17,10 @@ const root = ReactDOM.createRoot(
 const theme = createTheme({
     typography: {
         fontFamily: [
-            '"Segoe UI"',
-            'Roboto',
-            '"Helvetica Neue"',
             'Arial',
+            'Roboto',
+            '"Segoe UI Symbol"',
+            '"Segoe UI"',
             'sans-serif',
             '"Apple Color Emoji"',
             '"Segoe UI Emoji"',
